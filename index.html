@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ronit Shikalgar — Digital Growth & Strategy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+  * { font-family: 'Outfit', sans-serif; }
+  html, body { margin: 0; padding: 0; background: #17171a; color: #ECEAE6; overflow: hidden; }
+  a { color: #C97B5E; text-decoration: none; }
+  a:hover { color: #D99177; }
+  ::selection { background: rgba(201,123,94,.35); }
+  .scroll-pane::-webkit-scrollbar { width: 6px; }
+  .scroll-pane::-webkit-scrollbar-track { background: transparent; }
+  .scroll-pane::-webkit-scrollbar-thumb { background: #2e2e33; border-radius: 3px; }
+  body { cursor: default; }
+  a, button { cursor: pointer; }
+  .card-hover { transition: transform .3s; }
+  .card-hover:hover { transform: translateY(-4px); }
+  .cta-btn { transition: background-color .3s, color .3s; }
+  .cta-btn:hover { background: #C97B5E; color: #17171a !important; }
+  /* Mobile: swipeable horizontal carousels */
+  @media (max-width: 767px) {
+    .m-carousel { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 16px; padding-bottom: 8px; }
+    .m-carousel::-webkit-scrollbar { display: none; }
+    .m-carousel > * { flex: 0 0 88%; min-width: 88%; scroll-snap-align: start; margin-top: 0 !important; padding: 1.5rem !important; }
+    #scroll-pane section { min-height: 0 !important; height: auto !important; padding: 3rem 1.25rem !important; }
+    #scroll-pane section:first-child { height: 100svh !important; }
+    .m-carousel { margin-right: -1.25rem; padding-right: 1.25rem; }
+    .swipe-hint { display: flex !important; }
+  }
+  .swipe-hint { display: none; }
+  /* readability: lift text off the 3D scene */
+  #scroll-pane h1, #scroll-pane h2, #scroll-pane h3, #scroll-pane p, #scroll-pane div { text-shadow: 0 1px 3px rgba(23,23,26,.95), 0 2px 24px rgba(23,23,26,.75); }
+  #scroll-pane .font-light { font-weight: 400 !important; }
+</style>
+</head>
+<body>
+
+<div id="cursor" class="fixed top-0 left-0 w-8 h-8 border border-[#ECEAE6] rounded-full pointer-events-none z-[9999] transition-transform duration-100 ease-out mix-blend-difference opacity-70"></div>
+
+<div id="root" class="w-screen h-screen absolute inset-0" style="width:100vw;height:100vh;background:#17171a">
+  <canvas id="scene" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>
+  <div style="position:absolute;inset:0;background:rgba(23,23,26,0.38);pointer-events:none"></div>
+
+  <div id="scroll-pane" class="scroll-pane" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+    <div class="w-screen relative z-40">
+
+      <section class="h-screen flex flex-col justify-center px-8 md:px-24 pointer-events-none">
+        <p class="text-base tracking-[0.35em] uppercase mb-6" style="color:#8FA58B">Content Strategist &amp; Marketer</p>
+        <h1 class="text-6xl md:text-8xl font-semibold leading-[0.95] max-w-3xl" style="color:#ECEAE6">Ronit<br />Shikalgar</h1>
+        <p class="mt-8 text-2xl md:text-3xl font-light max-w-md" style="color:rgba(236,234,230,0.95)">Driving brand value, digital visibility, and revenue-focused acquisition.</p>
+        <div class="mt-16 flex items-center gap-3 text-sm tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.85)">
+          <span class="inline-block w-10 h-px" style="background:#C97B5E"></span>
+          Scroll to view systems
+        </div>
+      </section>
+
+      <section class="min-h-screen py-24 flex flex-col justify-center px-8 md:px-24">
+        <p class="text-base tracking-[0.35em] uppercase mb-4" style="color:#C97B5E">Core Ecosystems</p>
+        <h2 class="text-4xl md:text-5xl font-medium mb-12 max-w-2xl" style="color:#ECEAE6">Strategic digital growth for ambitious brands and scaling businesses.</h2>
+        <div class="swipe-hint items-center gap-2 mb-6 text-xs tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.65)">Swipe →</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl relative z-50 m-carousel">
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#8FA58B"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Social Media Management</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Building sustainable brand equity through precise platform-native calendars. Elevating audience connection to systematically capture higher digital inquiry velocity.</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#ECEAE6"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Performance Marketing</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Scalable ad infrastructure deployed across Google and Meta platforms. Data-focused targeting optimized from the first click to final consumer conversion.</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#C97B5E"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Google Business Profile</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Dominating local search layout architecture. Engineered to boost Map Pack positioning, yielding up to a 200% increase in discovery and high-intent calls.</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#A89F91"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Content Writing &amp; Strategy</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Drafting comprehensive 31-day script calendars and high-converting editorial content that gives brands a distinct, authoritative voice in their market.</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#8FA58B"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Team &amp; Project Management</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Directing cross-functional campaigns, coordinating seamless client deliverables, and overseeing creative execution from initial concept through to final launch.</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#C97B5E"></span>
+            <h3 class="text-lg font-medium mb-3" style="color:#ECEAE6">Creative Visual Design</h3>
+            <p class="text-base font-light leading-relaxed" style="color:rgba(236,234,230,0.95)">Combining high-impact design strategies with dynamic multimedia editing utilizing Canva and CapCut to deliver visually engaging, on-brand assets at scale.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Studies / Selected Work -->
+      <section class="min-h-screen py-24 flex flex-col justify-center px-8 md:px-24 relative z-50">
+        <div class="flex justify-between items-baseline border-b pb-6 mb-12" style="border-color:rgba(236,234,230,0.12)">
+          <p class="text-base tracking-[0.35em] uppercase" style="color:#C97B5E">Selected Work</p>
+          <p class="text-base tracking-[0.15em]" style="color:rgba(236,234,230,0.9)">01 — 03</p>
+        </div>
+        <div class="swipe-hint items-center gap-2 mb-6 text-xs tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.65)">Swipe →</div>
+
+        <div class="space-y-12 max-w-5xl m-carousel">
+          <div class="grid md:grid-cols-[60px_1fr_1fr] gap-8 items-start border-b pb-12" style="border-color:rgba(236,234,230,0.08)">
+            <div class="text-xl font-medium" style="color:#8FA58B">01</div>
+            <div>
+              <h3 class="text-3xl font-medium mb-2" style="color:#ECEAE6">The Perfect Smile Dental Clinic</h3>
+              <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Healthcare — 10 Months</p>
+            </div>
+            <div>
+              <p class="font-light leading-relaxed text-base mb-6" style="color:rgba(236,234,230,0.95)">Meta &amp; Google campaigns, social management and premium creatives — a steady channel of quality patient enquiries for a growing dental practice.</p>
+              <div class="flex flex-wrap gap-2 text-[11px] tracking-widest uppercase">
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Meta Ads</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Google Ads</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Social</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Creatives</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[60px_1fr_1fr] gap-8 items-start border-b pb-12" style="border-color:rgba(236,234,230,0.08)">
+            <div class="text-xl font-medium" style="color:#C97B5E">02</div>
+            <div>
+              <h3 class="text-3xl font-medium mb-2" style="color:#ECEAE6">Metro Footwear &amp; Leather Store</h3>
+              <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Retail</p>
+            </div>
+            <div>
+              <p class="font-light leading-relaxed text-base mb-6" style="color:rgba(236,234,230,0.95)">Social campaigns and creatives built on consumer psychology — stronger engagement and a brand presence that finally matched the store's reputation.</p>
+              <div class="flex flex-wrap gap-2 text-[11px] tracking-widest uppercase">
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Campaigns</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Brand Presence</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Creatives</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[60px_1fr_1fr] gap-8 items-start border-b pb-12" style="border-color:rgba(236,234,230,0.08)">
+            <div class="text-xl font-medium" style="color:#ECEAE6">03</div>
+            <div>
+              <h3 class="text-3xl font-medium mb-2" style="color:#ECEAE6">Dr. Ravindra Patil — Neurosurgeon</h3>
+              <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Healthcare — Ongoing</p>
+            </div>
+            <div>
+              <p class="font-light leading-relaxed text-base mb-6" style="color:rgba(236,234,230,0.95)">Educational neurosurgery content and a professional social presence — complex medical topics made legible and trustworthy for patients.</p>
+              <div class="flex flex-wrap gap-2 text-[11px] tracking-widest uppercase">
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Content</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Social</span>
+                <span class="px-3 py-1.5 border rounded-full" style="border-color:rgba(236,234,230,0.15); color:rgba(236,234,230,0.95)">Healthcare Comms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-sm tracking-[0.15em] uppercase mt-8 max-w-5xl" style="color:rgba(236,234,230,0.85)">Also: Aparna Store · Zawar Dental Clinic · Jhansi Orthopaedic Hospital</p>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="min-h-[80vh] py-24 flex flex-col justify-center px-8 md:px-24 relative z-50">
+        <p class="text-base tracking-[0.35em] uppercase mb-12" style="color:#8FA58B">In Their Words</p>
+        <div class="swipe-hint items-center gap-2 -mt-8 mb-6 text-xs tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.65)">Swipe →</div>
+        <div class="grid md:grid-cols-3 gap-6 max-w-6xl m-carousel">
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border flex flex-col justify-between" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <div>
+              <div class="text-5xl font-serif mb-4" style="color:#8FA58B; line-height:0.8;">“</div>
+              <p class="text-base font-light leading-relaxed mb-8" style="color:rgba(236,234,230,0.97)">Working with Ronit has significantly improved our digital presence. From creating educational healthcare content to managing our social media professionally, he understands how to communicate complex medical topics in a way that patients can easily understand. His creativity, consistency, and dedication have made him a valuable part of our team.</p>
+            </div>
+            <div class="text-xs tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">— Dr. Ravindra Patil, Consultant Neurosurgeon</div>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border flex flex-col justify-between" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <div>
+              <div class="text-5xl font-serif mb-4" style="color:#C97B5E; line-height:0.8;">“</div>
+              <p class="text-base font-light leading-relaxed mb-8" style="color:rgba(236,234,230,0.97)">Ronit helped us build a stronger online presence through well-planned social media campaigns and engaging creatives. His understanding of consumer psychology and digital marketing helped increase customer engagement and improve our brand visibility. He is proactive, creative, and always delivers quality work on time.</p>
+            </div>
+            <div class="text-xs tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">— Metro Footwear &amp; Leather Store</div>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border flex flex-col justify-between" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <div>
+              <div class="text-5xl font-serif mb-4" style="color:#ECEAE6; line-height:0.8;">“</div>
+              <p class="text-base font-light leading-relaxed mb-8" style="color:rgba(236,234,230,0.97)">Ronit has been instrumental in growing our clinic's digital presence. From designing premium creatives and managing our social media to running performance marketing campaigns, his work has consistently generated quality patient enquiries. He understands healthcare marketing and knows how to build trust through content.</p>
+            </div>
+            <div class="text-xs tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">— Dr. Prasanna Sawant, The Perfect Smile Dental Clinic</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience & Methodology -->
+      <section class="min-h-[80vh] py-24 flex flex-col justify-center px-8 md:px-24 relative z-50">
+        <p class="text-base tracking-[0.35em] uppercase mb-4" style="color:#8FA58B">Methodology &amp; Experience</p>
+        <h2 class="text-4xl md:text-5xl font-medium mb-12 max-w-3xl" style="color:#ECEAE6">Years of execution and strategic coordination.</h2>
+        <div class="swipe-hint items-center gap-2 mb-6 text-xs tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.65)">Swipe →</div>
+
+        <div class="max-w-4xl space-y-12 mb-16 m-carousel">
+          <div class="grid md:grid-cols-[200px_1fr] gap-6 border-t pt-8" style="border-color:rgba(236,234,230,0.12)">
+            <div class="text-base tracking-widest font-medium" style="color:rgba(236,234,230,0.9)">2025 — PRESENT</div>
+            <div>
+              <h3 class="text-2xl font-medium mb-2" style="color:#ECEAE6">Digital Marketing &amp; Brand Coordinator</h3>
+              <p class="text-sm tracking-[0.15em] uppercase mb-4" style="color:#C97B5E">Religiate Interactive Brand Consulting</p>
+              <p class="font-light leading-relaxed text-base max-w-2xl" style="color:rgba(236,234,230,0.95)">Brand and project coordination, team liaison, social media management, Google Business Profile optimisation and WhatsApp marketing across 5–6 healthcare and retail clients.</p>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-[200px_1fr] gap-6 border-t pt-8" style="border-color:rgba(236,234,230,0.12)">
+            <div class="text-base tracking-widest font-medium" style="color:rgba(236,234,230,0.9)">2023 — 2025</div>
+            <div>
+              <h3 class="text-2xl font-medium mb-2" style="color:#ECEAE6">Freelance Digital Marketer</h3>
+              <p class="text-sm tracking-[0.15em] uppercase mb-4" style="color:#C97B5E">Independent</p>
+              <p class="font-light leading-relaxed text-base max-w-2xl" style="color:rgba(236,234,230,0.95)">Meta &amp; Google Ads, social media and local marketing for Aparna Store (10 mo), The Perfect Smile Dental Clinic (10 mo) and Zawar Dental Clinic (3 mo).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-2xl text-xl font-light leading-relaxed space-y-6 pt-8 border-t" style="color:rgba(236,234,230,0.97); border-color:rgba(236,234,230,0.12)">
+          <p>Operating at the intersection of creative strategy and technical execution. Holding professional certifications in <strong>Google Digital Marketing, Performance Marketing, HubSpot Social Media, and Canva Marketing</strong> ensures that every campaign is built on a proven, data-backed foundation.</p>
+          <p>Having partnered with multiple business brands across diverse industries, the focus remains on building interconnected systems that actively compound visibility, engagement, and revenue over time.</p>
+        </div>
+      </section>
+
+      <section class="min-h-screen py-24 flex flex-col justify-center px-8 md:px-24">
+        <p class="text-base tracking-[0.35em] uppercase mb-4" style="color:#8FA58B">Certifications</p>
+        <h2 class="text-4xl md:text-5xl font-medium mb-12 max-w-2xl" style="color:#ECEAE6">Credentialed across the modern growth stack.</h2>
+        <div class="swipe-hint items-center gap-2 mb-6 text-xs tracking-[0.25em] uppercase" style="color:rgba(236,234,230,0.75)">Swipe →</div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl relative z-50 m-carousel">
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#C97B5E"></span>
+            <h3 class="text-lg font-medium mb-2" style="color:#ECEAE6">Google Digital Marketing</h3>
+            <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Google</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#8FA58B"></span>
+            <h3 class="text-lg font-medium mb-2" style="color:#ECEAE6">Performance Marketing</h3>
+            <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Tutedude</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#ECEAE6"></span>
+            <h3 class="text-lg font-medium mb-2" style="color:#ECEAE6">Social Media Marketing</h3>
+            <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">HubSpot</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#A89F91"></span>
+            <h3 class="text-lg font-medium mb-2" style="color:#ECEAE6">Canva Marketing</h3>
+            <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">Canva</p>
+          </div>
+          <div class="card-hover rounded-2xl p-8 backdrop-blur-xl border" style="background:rgba(236,234,230,0.045);border-color:rgba(236,234,230,0.1)">
+            <span class="inline-block w-8 h-1 rounded-full mb-6" style="background:#C97B5E"></span>
+            <h3 class="text-lg font-medium mb-2" style="color:#ECEAE6">Beginner Prompt Engineering</h3>
+            <p class="text-sm tracking-[0.15em] uppercase" style="color:rgba(236,234,230,0.85)">AWS</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="md:h-[30vh] flex items-end px-8 md:px-24 pb-16">
+        <div class="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-6 border-t pt-10 relative z-50" style="border-color:rgba(236,234,230,0.12)">
+          <div>
+            <p class="text-base tracking-[0.35em] uppercase mb-3" style="color:#C97B5E">Partnership</p>
+            <h2 class="text-3xl md:text-4xl font-medium" style="color:#ECEAE6">Let's work together to help your business grow.</h2>
+          </div>
+          <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 self-start md:self-auto">
+          <a href="https://wa.me/919764027570?text=Hi%20Ronit%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="cta-btn inline-flex items-center gap-3 rounded-full px-8 py-4 text-base tracking-wide border" style="border-color:#C97B5E;color:#ECEAE6">
+            Initiate Project
+            <span style="color:inherit">→</span>
+          </a>
+          <a href="mailto:ronitshikalgar20599@gmail.com" class="text-sm tracking-[0.15em]" style="color:rgba(236,234,230,0.85)">ronitshikalgar20599@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/+esm';
+
+const CHARCOAL = '#17171a', TERRA = '#C97B5E', SAGE = '#8FA58B';
+let hovered = false, scrollProgress = 0;
+
+/* cursor */
+const cursor = document.getElementById('cursor');
+window.addEventListener('mousemove', (e) => {
+  cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+});
+
+/* hover + scroll state */
+const stage = document.getElementById('root');
+stage.addEventListener('pointerenter', () => hovered = true);
+stage.addEventListener('pointerleave', () => hovered = false);
+const pane = document.getElementById('scroll-pane');
+pane.addEventListener('scroll', () => {
+  const max = pane.scrollHeight - pane.clientHeight;
+  scrollProgress = max > 0 ? pane.scrollTop / max : 0;
+});
+
+/* renderer */
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const sceneObj = new THREE.Scene();
+sceneObj.background = new THREE.Color(CHARCOAL);
+sceneObj.fog = new THREE.Fog(CHARCOAL, 12, 26);
+
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.9, 7.5);
+
+sceneObj.add(new THREE.AmbientLight(0xffffff, 0.65));
+const dir1 = new THREE.DirectionalLight(0xfff6ee, 1.1); dir1.position.set(4, 8, 5); sceneObj.add(dir1);
+const dir2 = new THREE.DirectionalLight(0xdfe8df, 0.35); dir2.position.set(-6, 4, -4); sceneObj.add(dir2);
+
+/* digital nexus */
+const group = new THREE.Group();
+sceneObj.add(group);
+
+const core = new THREE.Mesh(
+  new THREE.OctahedronGeometry(0.7, 0),
+  new THREE.MeshStandardMaterial({ color: CHARCOAL, roughness: 0.2, metalness: 0.8 })
+);
+core.position.set(0, 1.2, 0);
+group.add(core);
+
+const wireframeCore = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(1.1, 1),
+  new THREE.MeshStandardMaterial({ color: TERRA, wireframe: true, transparent: true, opacity: 0.6 })
+);
+wireframeCore.position.set(0, 1.2, 0);
+group.add(wireframeCore);
+const coreScale = new THREE.Vector3(1, 1, 1);
+
+const NODES = 6, baseRadius = 2.0;
+const nodes = [];
+for (let i = 0; i < NODES; i++) {
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(0.12, 24, 24),
+    new THREE.MeshStandardMaterial({ color: SAGE, roughness: 0.4, metalness: 0.6 })
+  );
+  group.add(mesh);
+  nodes.push({ mesh, radius: baseRadius, angle: (i / NODES) * Math.PI * 2, index: i });
+}
+
+const pedestal = new THREE.Mesh(
+  new THREE.CylinderGeometry(2.4, 2.5, 0.18, 64),
+  new THREE.MeshStandardMaterial({ color: 0x222226, roughness: 0.95, metalness: 0.02 })
+);
+pedestal.position.set(0, -0.09, 0);
+group.add(pedestal);
+
+const ground = new THREE.Mesh(
+  new THREE.CircleGeometry(14, 64),
+  new THREE.MeshStandardMaterial({ color: 0x1b1b1f, roughness: 1, metalness: 0 })
+);
+ground.rotation.x = -Math.PI / 2;
+ground.position.set(0, -0.18, 0);
+group.add(ground);
+
+/* camera path */
+const path = [
+  { p: new THREE.Vector3(0, 1.9, 7.5),   l: new THREE.Vector3(0, 1.2, 0) },
+  { p: new THREE.Vector3(4.4, 2.6, 4.6), l: new THREE.Vector3(0, 1.0, 0) },
+  { p: new THREE.Vector3(3.0, 3.5, -1.0),l: new THREE.Vector3(0, 1.0, 0) },
+  { p: new THREE.Vector3(5.4, 4.4, -2.4),l: new THREE.Vector3(0, 0.9, 0) },
+  { p: new THREE.Vector3(0, 6.4, -6.8),  l: new THREE.Vector3(0, 0.6, 0) },
+];
+let smoothed = 0;
+const vec = new THREE.Vector3(), look = new THREE.Vector3();
+
+/* loop */
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const delta = Math.min(clock.getDelta(), 0.1);
+  const t = clock.elapsedTime;
+
+  group.rotation.y = t * 0.1;
+
+  const targetScale = hovered ? 1.3 : 1;
+  coreScale.set(targetScale, targetScale, targetScale);
+  wireframeCore.scale.lerp(coreScale, 0.05);
+  wireframeCore.rotation.x = t * 0.2;
+  wireframeCore.rotation.z = t * 0.15;
+
+  for (const n of nodes) {
+    const targetRadius = hovered ? baseRadius * 1.5 : baseRadius;
+    n.radius = THREE.MathUtils.damp(n.radius, targetRadius, 3.5 / (1 + n.index * 0.35), delta);
+    const speed = 0.4 + (n.index * 0.15);
+    n.mesh.position.x = Math.cos(n.angle + t * speed) * n.radius;
+    n.mesh.position.z = Math.sin(n.angle + t * speed) * n.radius;
+    n.mesh.position.y = 1.2 + Math.sin(t * 1.5 + n.index) * 0.4;
+  }
+
+  smoothed = THREE.MathUtils.damp(smoothed, scrollProgress, 6, delta);
+  const pt = smoothed * (path.length - 1);
+  const i = Math.min(Math.floor(pt), path.length - 2);
+  const f = THREE.MathUtils.smoothstep(pt - i, 0, 1);
+  vec.lerpVectors(path[i].p, path[i + 1].p, f);
+  look.lerpVectors(path[i].l, path[i + 1].l, f);
+  camera.position.copy(vec);
+  camera.lookAt(look);
+
+  renderer.render(sceneObj, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
